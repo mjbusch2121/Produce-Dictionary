@@ -123,7 +123,7 @@ I combined my produce industry experience with learning web development fundamen
 
 **Mike Busch**  
 Building practical projects to learn web development  
-[GitHub](https://github.com/mjbusch2121) | [LinkedIn] (https://www.linkedin.com/in/mike-busch-0b343a34b/)
+[GitHub](https://github.com/mjbusch2121) | [LinkedIn](https://www.linkedin.com/in/mike-busch-0b343a34b/)
 
 ## License
 
