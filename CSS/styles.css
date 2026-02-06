@@ -1,0 +1,533 @@
+/* PRODUCE DICTIONARY - STYLES.CSS */
+
+/* This CSS file contains all the visual styling for our produce dictionary.
+   CSS works by selecting HTML elements and applying style rules to them. */
+:root {
+  /* Light mode colors (default) */
+  --bg-gradient-start: #bde4a7;
+  --bg-gradient-end: #b3d2b2;
+  --card-bg: #f7fafc;
+  --container-bg: white;
+  --text-primary: black;
+  --text-secondary: #718096;
+  --text-light: #a0aec0;
+  --accent-color: #bde4a7;
+  --border-color: #e2e8f0;
+  --header-bg: white;
+  --footer-bg: white;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-lg: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode color overrides - applied when body has 'dark-mode' class */
+body.dark-mode {
+  --bg-gradient-start: #1a202c;
+  --bg-gradient-end: #2d3748;
+  --card-bg: #2d3748;
+  --container-bg: #1a202c;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e0;
+  --text-light: #718096;
+  --accent-color: #9acd32;
+  --border-color: #4a5568;
+  --header-bg: #2d3748;
+  --footer-bg: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-lg: rgba(0, 0, 0, 0.5);
+}
+
+/* RESET & BASE STYLES */
+/* The * selector targets EVERY element on the page */
+* {
+  margin: 0; /* Removes default spacing outside elements */
+  padding: 0; /* Removes default spacing inside elements */
+  box-sizing: border-box; /* Makes width/height calculations easier - includes padding & border */
+}
+
+/* Styling the entire body of the page */
+body {
+  /* Font stack */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Using CSS variables - changes automatically in dark mode! */
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  );
+  /* Makes body at least as tall as the viewport (screen height) */
+  min-height: 100vh;
+  /* Default text color for all the text */
+  color: var(--text-primary);
+  /* Space between lines of text (1.6 times the font size) */
+  line-height: 1.6;
+  /* Smooth transition when switching themes */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+  /* solid white background for the header */
+  background-color: var(--header-bg);
+  /* 2rem top/bottom padding, 1 rem left/right (rem is relative to root font size) */
+  padding: 2rem 1rem;
+  text-align: center;
+  /* Subtle shadow: 0 horizontal, 4px down, 6px blur, semi-transparent black */
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: background-color 0.3s ease;
+}
+/* Flexbox container for header title and dark mode button */
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative; /* ← Allows absolute positioning of button */
+}
+
+header h1 {
+  color: var(--accent-color);
+  /* Large heading size (2.5 times the root font size, typically 40px) */
+  font-size: 2.5rem;
+  /* small space below the heading */
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  /* Slightly larger than normal text */
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* Dark mode toggle button */
+.dark-mode-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: absolute; /* ← Makes it float independently */
+  right: 0; /* ← Positions it on the right */
+  top: 0; /* ← Aligns with top */
+}
+
+.dark-mode-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Icon visibility - show moon in light mode, sun in dark mode */
+.dark-mode-btn .sun-icon {
+  display: none;
+}
+
+body.dark-mode .dark-mode-btn .sun-icon {
+  display: inline;
+}
+
+body.dark-mode .dark-mode-btn .moon-icon {
+  display: none;
+}
+
+/* Search container */
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 1.5rem auto 0;
+}
+
+/* Search input box */
+.search-box {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 25px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+/* Search icon positioned inside the search box */
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+main {
+  /* spacing around te main content area */
+  padding: 2rem 1rem;
+}
+
+.container {
+  /* container never gets wider than 1200px */
+  max-width: 1200px;
+  /* 0 top/bottom margin, auto left/right centers the container */
+  margin: 0 auto;
+  /* white background for content area */
+  background-color: var(--container-bg);
+  /* Rounded corners (20px radius) */
+  border-radius: 20px;
+  /* Space inside the container around the content */
+  padding: 2rem;
+  /* Large shadow to make container "float" above background */
+  box-shadow: 0 10px 30px var(--shadow-color-lg);
+  transition: background-color 0.3s ease;
+}
+
+/* PRODUCE GRID LAYOUT */
+.produce-grid {
+  /* CSS grid-powerful layout system for 2D layouts */
+  display: grid;
+  /* creates 3 columns of equal width (1fr = 1 fraction of available space) */
+  /* repeat (3, 1fr) is shorthand for "1fr 1fr 1fr" */
+  grid-template-columns: repeat(3, 1fr);
+  /* space between grid items (both rows and columns) */
+  gap: 1.5rem;
+  /* space above the grid */
+  margin-top: 2rem;
+}
+
+/* Alternative: Could use Flexbox instead of Grid
+   Uncomment to try Flexbox:
+
+.produce-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 250px;
+}
+*/
+
+/* CARD STYLES */
+.card {
+  background-color: var(--card-bg);
+  /* rounded corners on cards */
+  border-radius: 12px;
+  /* space inside each card */
+  overflow: hidden;
+  /* Clips images to card's rounded corners */
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* This styles the card when you hover your mouse over it */
+.card:hover {
+  /* moves card up 5px (negative Y direction is up) */
+  transform: translateY(-5px);
+  /* stronger shadow when hovering makes it look like it's lifting more */
+  box-shadow: 0 8px 16px var(--shadow-color-lg);
+}
+
+/* Image container at top of card */
+.card-image {
+  width: 100%;
+  height: 200px;
+  /* Fixed height for consistent card sizes */
+  background: var(--border-color);
+  /* Fallback color while image loads */
+  overflow: hidden;
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensures image fills space while maintaining aspect ratio */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Zoom effect on hover */
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-header {
+  border-bottom: 2px solid var(--border-color);
+  padding: 1rem 1.5rem 0.75rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.card-header h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.spanish-name {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.category {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+footer {
+  background-color: var(--footer-bg);
+  /* spacing inside footer */
+  padding: 2rem 1rem;
+  text-align: center;
+  /* space above the footer */
+  margin-top: 2rem;
+  color: var(--text-secondary);
+  transition: background-color 0.3s ease;
+}
+
+footer p {
+  margin-bottom: 0.5rem;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* NO RESULTS MESSAGE */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+.no-results p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.no-results-hint {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* HIDDEN CLASS (for search filtering) */
+.card.hidden {
+  display: none;
+}
+
+/* RESPONSIVE DESIGN & MEDIA QUERIES */
+/* MOBILE AND TABLET SUPPORT */
+
+/* TABLET - 2 columns (768px - 1023px) */
+@media (max-width: 1023px) {
+  /* Reduce grid to 2 columns on tablets */
+  .produce-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 equal columns */
+    gap: 1.25rem;
+    /* Slightly smaller gap */
+  }
+
+  /* Make container padding smaller */
+  .container {
+    padding: 1.5rem;
+  }
+
+  /* Reduce header title size */
+  header h1 {
+    font-size: 2rem;
+    /* Smaller on tablets */
+  }
+
+  /* Stack header content on smaller tablets */
+  .header-content {
+    flex-direction: column;
+    /* Stack vertically */
+    gap: 1rem;
+  }
+
+  /* Center dark mode button when stacked */
+  .dark-mode-btn {
+    position: static;
+    /* Remove absolute positioning */
+    margin-top: 0.5rem;
+  }
+}
+
+/* MOBILE - 1 column (below 768px) */
+@media (max-width: 767px) {
+  /* Single column layout on mobile */
+  .produce-grid {
+    grid-template-columns: 1fr;
+    /* 1 column only */
+    gap: 1rem;
+  }
+
+  /* Reduce overall page padding */
+  body {
+    padding: 10px;
+  }
+
+  main {
+    padding: 1rem 0.5rem;
+  }
+
+  /* Smaller container padding on mobile */
+  .container {
+    padding: 1rem;
+    border-radius: 15px;
+    /* Slightly less rounded */
+  }
+
+  /* Mobile header adjustments */
+  header {
+    padding: 1.5rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+    /* Even smaller on mobile */
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Make search box full width */
+  .search-container {
+    max-width: 100%;
+    margin: 1rem auto 0;
+  }
+
+  .search-box {
+    padding: 10px 40px 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  /* Adjust card styling for mobile */
+  .card-image {
+    height: 180px;
+    /* Slightly shorter images on mobile */
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem 0.5rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .card-body {
+    padding: 0 1rem 1rem;
+  }
+
+  .spanish-name {
+    font-size: 1.1rem;
+  }
+
+  .category {
+    font-size: 0.85rem;
+  }
+
+  /* Footer text smaller on mobile */
+  footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .small-text {
+    font-size: 0.75rem;
+  }
+
+  /* Dark mode button adjustments for mobile */
+  .dark-mode-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+/* EXTRA SMALL MOBILE - Phones in portrait (below 480px) */
+@media (max-width: 479px) {
+  /* Further reduce sizes for very small screens */
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-image {
+    height: 160px;
+  }
+
+  .card-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .spanish-name {
+    font-size: 1rem;
+  }
+}
+
+/* LEARNING NOTES */
+/* KEY CSS CONCEPTS USED IN THIS FILE:
+   
+   1. SELECTORS: How we target HTML elements
+      - Element selector: body, header, footer
+      - Class selector: .card, .spanish-name
+      - Descendant selector: header h1 (h1 inside header)
+   
+   2. BOX MODEL: Every element is a box with:
+      - Content (the text/images)
+      - Padding (space inside the border)
+      - Border (line around the element)
+      - Margin (space outside the border)
+   
+   3. LAYOUT SYSTEMS:
+      - CSS Grid: For 2D layouts (rows AND columns)
+      - Flexbox: For 1D layouts (row OR column)
+   
+   4. COLORS:
+      - Named: white, black
+      - Hex: #667eea (6-digit color code)
+      - RGBA: rgba(0, 0, 0, 0.1) (red, green, blue, alpha/transparency)
+   
+   5. UNITS:
+      - px: Fixed pixels
+      - rem: Relative to root font size (usually 16px)
+      - %: Percentage of parent element
+      - fr: Fraction of available space (grid only)
+   
+   6. PSEUDO-CLASSES:
+      - :hover - When mouse is over element
+      - :active - When element is being clicked
+      - :focus - When element is selected/focused
+*/
